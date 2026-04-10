@@ -1,0 +1,83 @@
+import Conversation from "../models/conversation.model.js";
+import Message from "../models/messages.model.js";
+import { getRecieverSocketId, io } from "../socket/socket.js"; // Make sure io is imported
+
+export const sendMessage = async (req, res) => {
+    try {
+        const message = req.body.message || "";
+        const { id: recieverId } = req.params;
+        const senderId = req.user._id;
+
+        let mediaUrl = "";
+        let mediaType = "";
+        let fileName = "";
+
+        if (req.file) {
+            mediaUrl = `/uploads/${req.file.filename}`;
+            fileName = req.file.originalname;
+
+            if (req.file.mimetype.startsWith("image")) {
+                mediaType = "image";
+            } else if (req.file.mimetype.startsWith("video")) {
+                mediaType = "video";
+            } else {    
+                mediaType = "file";
+            }
+        }
+
+        let conversation = await Conversation.findOne({
+            participants: { $all: [senderId, recieverId] },
+        });
+
+        if (!conversation) {
+            conversation = await Conversation.create({
+                participants: [senderId, recieverId],
+            });
+        }
+    console.log("req.body:", req.body);
+    console.log("req.file:", req.file);
+        const newMessage = new Message({
+            senderId,
+            recieverId,
+            message,
+            mediaUrl,
+            mediaType,
+            fileName,
+        });
+
+       conversation.messages.push(newMessage._id);
+
+        await Promise.all([conversation.save(), newMessage.save()]);
+
+        const recieverSocketId = getRecieverSocketId(recieverId);
+
+        if (recieverSocketId) {
+            io.to(recieverSocketId).emit("newMessage", newMessage);
+        }
+
+        res.status(201).json(newMessage);
+    } catch (error) {
+        console.log("Error in sendMessage controller: ", error.message);
+        res.status(500).json({ error: "Internal server error" });
+    }
+};
+export const getMessage =async (req,res)=>{
+    try{
+        const {id:userToChatId} = req.params;
+        const senderId = req.user._id;
+
+        const conversation = await Conversation.findOne({
+            participants :{$all :[senderId,userToChatId]},
+        }).populate("messages");
+        if(!conversation)
+        {
+            return res.status(200).json([]);
+        }
+        const messages = conversation.messages;
+        res.status(200).json(messages);
+    }
+    catch(error){
+        console.log("errore occured in get message Controller",error.message);
+        res.status(500).json({error:"Internal server error"});
+    }
+};
