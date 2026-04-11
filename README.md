@@ -162,9 +162,15 @@ frontend/dist
 
 ![login](https://github.com/user-attachments/assets/db5635b5-4e19-468a-a9f6-9c0db167cbcb)
 
+
+
 ![signup](https://github.com/user-attachments/assets/cbd088de-8795-4833-adcd-aca596b5dda0)
 
+
+
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/93c95f90-9db2-4fcb-81da-cb0e11321828" />
+
+
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/363d8752-4511-441a-9f9b-e97974f6bd24" />
 
 
