@@ -14,23 +14,9 @@ const Message = ({message}) => {
 
   return (
     <div className={`chat ${chatClassName}`}>
-        <div className='chat-image avatar'>
-            <div className='w-10 rounded-full'>
-                
-                <img
-    src={
-        profilePic ||
-        `https://ui-avatars.com/api/?name=${(fromMe ? authUser.fullName : selectedConversation?.fullName).replace(" ", "+")}&background=random&color=fff`
-    }
-    alt="user avatar"
-    onError={(e) => {
-        e.target.onerror = null;
-        e.target.src = `https://ui-avatars.com/api/?name=${(fromMe ? authUser.fullName : selectedConversation?.fullName).replace(" ", "+")}&background=random&color=fff`;
-    }}
-/>
 
-            </div>
-        </div>   
+        
+
         <div className={`chat-bubble text-white pb-2 ${bubbleBgColor} ${shakeClass}`}>
            {message.message}
            {message.mediaType === "image" && (

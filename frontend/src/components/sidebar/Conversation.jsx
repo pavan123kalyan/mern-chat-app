@@ -12,29 +12,37 @@ const Conversation = ({conversation,lastIdx,emoji}) => {
 				onClick ={()=>setSelectedConversation(conversation)} 
 			>
 					
- 				<div className= {`avatar ${isOnline ? "online" : "" }`} >
- 					<div className='w-12 rounded-full'>
- 						
-						<img
-    src={
-        conversation.profilepic ||
-        `https://ui-avatars.com/api/?name=${conversation.fullName.replace(" ", "+")}&background=random&color=fff`
-    }
-    alt='user avatar'
-    onError={(e) => {
-        e.target.onerror = null;
-        e.target.src = `https://ui-avatars.com/api/?name=${conversation.fullName.replace(" ", "+")}&background=random&color=fff`;
-    }}
-/>
-
- 					</div>
- 				</div>
-
+ 				<div className={`avatar ${isOnline ? "online" : ""}`}>
+  <div className='w-12 rounded-full'>
+    <div
+      className='w-12 h-12 rounded-full flex items-center justify-center text-black font-bold text-lg'
+     style={{
+  backgroundColor: [
+    "#fca5a5",
+    "#fdba74",
+    "#fde68a",
+    "#86efac",
+    "#93c5fd",
+    "#c4b5fd",
+    "#f9a8d4",
+    "#a7f3d0",
+    "#fcd34d",
+    "#bfdbfe",
+  ][conversation.fullName.charCodeAt(0) % 10],
+}}
+    >
+      {conversation.fullName
+        ?.split(" ")
+        .map((word) => word[0])
+        .join("")
+        .slice(0, 2)
+        .toUpperCase()}
+    </div>
+  </div>
+</div>
  				<div className='flex flex-col flex-1 overflow-hidden'>
     <div className='flex items-center justify-between'>
-        <p className='font-bold text-gray-200 truncate'>
-            {conversation.fullName}
-        </p>
+        <p className='font-bold sidebar-item'>{conversation.fullName}</p>
         <span className='text-xl ml-2'>{emoji}</span>
     </div>
 

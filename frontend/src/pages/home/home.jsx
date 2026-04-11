@@ -1,12 +1,15 @@
 import MessageContainer from "../../components/messages/MessageContainer";
 import Sidebar from "../../components/sidebar/Sidebar";
 
-const Home = () => {
-	return (
-		<div className='flex sm:h-[450px] md:h-[550px] rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0 border border-gray-100/20'>
-			<Sidebar />
-			<MessageContainer />
-		</div>
-	);
-};
-export default Home;
+export default function Home() {
+  return (
+    <div className='h-screen w-screen overflow-hidden'>
+      <div
+        className='h-full w-full flex glass-container rounded-none md:rounded-none border-0'
+      >
+        <Sidebar />
+        <MessageContainer />
+      </div>
+    </div>
+  );
+}

@@ -1,23 +1,30 @@
+import { useState } from "react";
 import Conversations from "./Conversations";
 import LogoutButton from "./LogoutButton";
 import SearchInput from "./SearchInput";
-import useConversation from "../../zustand/useConversation"; // 1. Import the hook
+import useConversation from "../../zustand/useConversation";
 
 const Sidebar = () => {
-    // 2. Getting the state from the store
-    const { selectedConversation } = useConversation();
+  const { selectedConversation } = useConversation();
 
-    return (
-        // 3. Applying conditional classes here
-        <div 
-            className={`border-r border-slate-500 p-4 flex flex-col 
-                       ${selectedConversation ? "hidden sm:flex" : "flex"}`}
-        >
-            <SearchInput />
-            <div className='divider px-3'></div>
-            <Conversations />
-            <LogoutButton />
-        </div>
-    );
+  return (
+    <div
+      className={`
+        ${selectedConversation ? "hidden sm:flex" : "flex"}
+        border-r border-slate-500 p-4 flex-col w-full sm:w-[35%] md:w-[30%] lg:w-[28%] h-full overflow-hidden
+      `}
+    >
+      <SearchInput />
+
+      <div className='divider px-3'></div>
+
+      <div className='py-2 flex flex-col overflow-y-auto flex-1'>
+        <Conversations />
+      </div>
+
+      <LogoutButton />
+    </div>
+  );
 };
+
 export default Sidebar;

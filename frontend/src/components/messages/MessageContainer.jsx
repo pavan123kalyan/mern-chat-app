@@ -18,15 +18,16 @@ const MessageContainer = () => {
     }, [setSelectedConversation]);
 
     return (
-        <div
-            className={`md:min-w-[450px] flex-col flex-1
-            ${selectedConversation ? "flex" : "hidden sm:flex"}`}
-        >
+        <div className={`
+    chat-area-light flex-1 h-full flex-col overflow-hidden
+    ${selectedConversation ? "flex" : "hidden sm:flex"}
+  `}
+>
             {!selectedConversation ? (
                 <NoChatSelected />
             ) : (
                 <>
-                    <div className='bg-slate-700 px-4 py-3 mb-2 flex items-center gap-3 border-b border-slate-600'>
+                    <div className='header-light bg-slate-500 px-4 py-2 mb-2 flex items-center gap-3'>
                         <button
                             className='btn btn-circle btn-sm sm:hidden'
                             onClick={() => setSelectedConversation(null)}
@@ -90,5 +91,4 @@ const NoChatSelected = () => {
         </div>
     );
 };
-
 export default MessageContainer;    
