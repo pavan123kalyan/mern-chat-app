@@ -163,15 +163,13 @@ frontend/dist
 ## Screenshots
 
 ### Login Page
-![Login Page](./screenshots/login.png)
+![Login Page](./screenshots/login-page.jpeg)
 
 ### Signup Page
-![Signup Page](./screenshots/signup.png)
+![Signup Page](./screenshots/signup-page.jpeg)
 
-### Dark Theme 
-![Dark Theme](./screenshots/Dark Theme.png)
+### Dark Theme
+![Dark Theme](./screenshots/dark-theme.png)
 
 ### Light Theme
-![Light Theme](./screenshots/light theme.png)
-
-
+![Light Theme](./screenshots/light-theme.png)
