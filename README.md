@@ -56,9 +56,15 @@ This project allows users to create accounts, log in securely, chat with other u
 
 ## Folder Structure
 #**backend structure**
+
 <img width="783" height="930" alt="image" src="https://github.com/user-attachments/assets/87fd2bb9-20e5-4278-8243-3209e91a2ebb" />
+
 # Frontend Structure
+
 <img width="756" height="837" alt="image" src="https://github.com/user-attachments/assets/82b6dfec-cb5d-42a3-ba1c-9e61154baaaa" />
+
+
+
 ## Project Setup
 ### 1. Clone the Repository
 git clone https://github.com/pavan123kalyan/mern-chat-app.git
